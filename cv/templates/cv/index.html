@@ -1,0 +1,10 @@
+{% if cv_list %}
+	<ol>
+		{% for cv in cv_list %}
+			<li><a href="{% url 'cv:detail' cv.id %}">{{ cv.name }}</a> {{ cv.timestamp }}</li>
+		{% endfor %}
+
+	</ol>
+{% else %}
+	<p> No resume </p>
+{% endif %}
