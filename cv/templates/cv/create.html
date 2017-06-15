@@ -1,0 +1,245 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{{ title }}</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link href='http://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/1.8/css/bootstrap-switch.css">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-imageupload.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/form.css' %}">
+</head>
+<body>
+	<style>
+.panel-default {
+     border:none !important; 
+}
+
+.form-horizontal .control-label {
+     text-align:left; 
+}
+body{
+	margin-top: 50px;
+}
+.panel-primary{
+    border:none;
+}
+	</style>
+	<div class='container'>
+		<div class='panel panel-primary dialog-panel'>
+      		<div class='panel-heading'>
+        		<h5>Create your CV - Here</h5>
+      		</div>
+      		<div class='panel-body' style="box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;">
+				<form class="form-horizontal" action=" "action="" role="form" method="post" enctype="multipart/form-data">
+					<legend>Personal Information</legend>
+				{% csrf_token %}
+					<div class='form-group'>
+            			<label class='control-label col-md-2 col-md-offset-2'>Full Name</label>
+            			<div class='col-md-6'>
+              				<div class='form-group'>
+                				<div class='col-md-11'>
+                  					<input class='form-control' name='{{form.name.name}}' placeholder='Enter Your Name Here'>
+                				</div>
+              				</div>
+          				</div>
+          			</div>
+          			<div class='form-group'>
+            			<label class='control-label col-md-2 col-md-offset-2'>Profile</label>
+            			<div class='col-md-6'>
+              				<div class='form-group'>
+                				<div class='col-md-11'>
+                  					<input class='form-control' name='{{form.profile.name}}' placeholder='Enter Your Profile Here'>
+                				</div>
+              				</div>
+          				</div>
+          			</div>
+          			<div class='form-group'>
+		            	<label class='control-label col-md-2 col-md-offset-2'>Phone No</label>
+		            	<div class='col-md-6'>
+		              		<div class='form-group'>
+		                		<div class='col-md-11'>
+		                  			<input class='form-control' name='{{form.phone_no.name}}' placeholder='Enter Phone No Here'>
+	                			</div>
+	              			</div>
+	          			</div>
+          			</div>
+          		<div class='form-group'>
+		            <label class='control-label col-md-2 col-md-offset-2'>Email Id</label>
+		            <div class='col-md-6'>
+		              <div class='form-group'>
+		                <div class='col-md-11'>
+		                  <input class='form-control' name='{{form.email_id.name}}' placeholder='Enter Your Name Here'>
+		                </div>
+		              </div>
+		          	</div>
+		        </div>
+          		<div class='form-group'>
+		            <label class='control-label col-md-2 col-md-offset-2'>Upload Image</label>
+		            <div class='col-md-6'>
+		            	<div class='form-group'>
+		                    <div class="imageupload panel panel-default" style="padding-top:20px">
+		                		<div class="file-tab panel-body">
+		                    		<label class="btn btn-default btn-file">
+		                        		<span>Browse</span><!-- The file is stored here. -->
+		                        		<input type="file" name="{{form.photo.name}}">
+		                    		</label>
+		                    		<button type="button" class="btn btn-default">Remove</button>
+		                		</div>
+			        		</div>
+	    				</div>
+	        		</div>
+			    </div>
+          		<div class='form-group'>
+            		<label class='control-label col-md-2 col-md-offset-2' >Hobbies & Intrests</label>
+            		<div class='col-md-6'>
+              			<textarea class='form-control' name="{{form.hobbies_and_intrests.name}}" placeholder='Tell us something more about you' rows='3'></textarea>
+            		</div>
+          		</div>
+		
+		
+			
+				<legend>Educational Qualifications</legend>
+				<div class="form-group">
+				{{ eqformset.management_form }}
+				{{ eqformset.non_form_errors }}
+				{% for form in eqformset %}
+					{{ form.id }}
+					<div class="inline {{ eqformset.prefix }}">
+						{{ form.course.errors }}
+						<label class='control-label col-md-2' >{{ form.course.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+						{{form.course}}
+						</div>
+						{{ form.instute_name.errors }}
+						<label class='control-label col-md-2' >{{ form.instute_name.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+							{{ form.instute_name }}
+						</div>
+						{{ form.stream.errors }}
+						<label class='control-label col-md-2' >{{ form.stream.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+							{{ form.stream }}
+						</div>
+						{{ form.percentage.errors }}
+						<label class='control-label col-md-2' >{{ form.percentage.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+							{{ form.percentage }}
+						</div>
+					</div>
+				{% endfor %}
+				</div>
+			<fieldset>
+				<legend>Skills</legend>
+				<div class="form-group">
+				{{ skillformset.management_form }}
+				{{ skillformset.non_form_errors }}
+				{% for form in skillformset %}
+					{{ form.id }}
+					<div class="inline {{ skillformset.prefix }}">
+						
+						<label class='control-label col-md-2' >{{ form.skill.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+							{{ form.skill.errors }}
+							{{ form.skill }}
+							
+						</div>
+						
+						<label class='control-label col-md-2' >{{ form.level.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+						{{ form.level.errors }}
+						{{ form.level }}
+						</div>
+						
+						
+					</div>
+				{% endfor %}
+				</div>
+			</fieldset>
+			<fieldset>
+				<legend>Achievements</legend>
+				{{  achieveformset.management_form }}
+				{{ achieveformset.non_form_errors }}
+				{% for form in achieveformset %}
+					{{ form.id }}
+					<div class="inline {{ achieveformset.prefix }}">
+						{{ form.achievements.errors }}
+						<label class='control-label col-md-2 col-md-offset-2' >{{ form.achievements.label_tag }}</label>
+						<div class='form-group internal col-md-6'>
+							{{ form.achievements }}
+						</div>
+					</div>
+				{% endfor %}
+			</fieldset>
+			<fieldset>
+				<legend>Work Experience</legend>
+				{{  weformset.management_form }}
+				{{ weformset.non_form_errors }}
+				{% for form in weformset %}
+					{{ form.id }}
+					<div class="inline {{ weformset.prefix }}">
+						{{ form.organisation.errors }}
+						<label class='control-label col-md-2' >{{ form.organisation.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+						{{form.organisation}}
+						</div>
+						{{ form.designation.errors }}
+						<label class='control-label col-md-2' >{{ form.designation.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+							{{ form.designation }}
+						</div>
+						{{ form.location.errors }}
+						<label class='control-label col-md-2' >{{ form.location.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+							{{ form.location }}
+						</div>
+						{{ form.years.errors }}
+						<label class='control-label col-md-2' >{{ form.years.label_tag }}</label>
+						<div class='form-group internal col-md-4'>
+							{{ form.years }}
+						</div>
+					</div>
+					{% endfor %}
+			</fieldset>
+			<div class='form-group'>
+            <div class='col-md-offset-6 col-md-4'>
+              <button class='btn-lg btn-primary' type='submit'>Submit</button>
+            </div>
+        	</div>
+	<!-- <input type="submit" value="Submit" class="submit" /> -->
+	</form>
+	</div>
+</div>
+    	</div>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<script  type="text/javascript" src="{% static 'js/jquery.formset.js' %}"></script>
+	<script type="text/javascript">
+		$(function() {
+		$(".inline.{{ eqformset.prefix }}").formset({
+		prefix: "{{ eqformset.prefix }}",
+		})
+		$(".inline.{{ skillformset.prefix }}").formset({
+		prefix: "{{ skillformset.prefix }}",
+		})
+		$(".inline.{{ achieveformset.prefix }}").formset({
+		prefix: "{{ archieveformset.prefix }}",
+		})
+		$(".inline.{{ weformset.prefix }}").formset({
+		prefix: "{{ weformset.prefix }}",
+		})
+	})
+</script>
+	<script type="text/javascript" src='//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js'></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-switch/1.8/js/bootstrap-switch.min.js"></script>
+	<script src="{% static 'js/bootstrap-imageupload.js' %}"></script>
+	<script>
+        var $imageupload = $('.imageupload');
+        $imageupload.imageupload();
+    </script>
+
+</body>
+</html>

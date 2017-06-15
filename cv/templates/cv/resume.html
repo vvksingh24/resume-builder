@@ -1,0 +1,32 @@
+<html>
+<head>
+<title>CV</title></head>
+<body>{% if cv.photo %}
+	<img src="{{ cv.photo.url }}" hieght='400px' width='300px' align='right'>
+{% endif %}
+<h1>{{ cv.name }}</h1>
+<p>Phone No: {{ cv.phone_no }}</p>
+<p>Email : {{ cv.email_id }}</p>
+<p>Work Experience : {{cv.work_experience}}</p>
+<p>Hobbies: {{cv.hobbies_and_intrests}}</p>
+<hr/>
+<!-- {{cv.education}} -->
+<h3>Education Qualification:</h3>
+{% for i in cv.education.all %}
+	<p>{{ i.course }}
+	{{ i.instute_name }}
+	{{ i.stream }}
+	{{ i.percentage }}</p>
+{% endfor %}
+
+{% for i in cv.skills.all %}
+{{i.skill}}<br/>
+{% endfor %}
+{% for i in cv.achievements.all %}
+{{i.achievements}}<br/>
+{% endfor %}
+{% for i in cv.work_experience.all %}
+{{i.organisation}}<br/>
+{% endfor %}
+</body>
+</html>
