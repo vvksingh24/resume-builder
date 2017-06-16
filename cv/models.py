@@ -11,7 +11,7 @@ class CV(models.Model):
 	photo=models.ImageField(upload_to=upload,null=True,height_field='height', width_field='width',blank=True)
 	height=models.IntegerField(default=0)
 	width=models.IntegerField(default=0)
-	# work_experience=models.TextField(max_length=250)
+	about_you=models.TextField(max_length=250)
 	hobbies_and_intrests=models.TextField(blank=True,null=True)
 	timestamp=models.DateTimeField(auto_now_add=True,auto_now=False)
 	profile=models.CharField(max_length=200)

@@ -1,4 +1,243 @@
+{% load staticfiles %}
+<!DOCTYPE html>
 <html>
+<head>
+	<title>{{ title }}</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+	<link href='http://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet' type='text/css'>
+	<link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'css/font-awesome.min.css' %}">
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar">
+	<div id="main-wrapper">
+		<!-- Page Preloader -->
+		<!-- <div id="preloader">
+		    <div id="status">
+		        <div class="status-mes"></div>
+		    </div>
+		</div>
+		 -->
+
+		<div class="columns-block">
+			<div class="left-col-block blocks">
+			    <header class="header">
+			        <div class="content text-center">
+			            <h1>Hi, I'm {{ cv.name }}!</h1>
+
+			            <p class="lead">{{ cv.profile }}</p>
+			     
+			        </div>
+			        <div class="profile-img">
+			        	{% if cv.photo %}
+						<img src="{{ cv.photo.url }}">
+						{% endif %}
+					</div>
+			    </header>
+			    <!-- .header-->
+			</div>
+			<div class="right-col-block blocks">
+				<section class="intro section-wrapper">
+				    <div class="container-fluid">
+				        <div class="row">
+				            <div class="col-md-12">
+				                <div class="section-title">
+				                    <h2>What I am all about.</h2>
+				                </div>
+				            </div>
+				            <div class="col-md-12">
+				                <p>
+				                    {{ cv.about_you }}
+				                </p>
+				            </div>
+				        </div>
+				    </div>
+				</section>
+				<section class="section-wrapper skills-wrapper gray-bg">
+				    <div class="container-fluid">
+				        <div class="row">
+				            <div class="col-md-12">
+				                <div class="section-title">
+				                    <h2>Skills</h2>
+				                </div>
+				            </div>
+				        </div>
+				        <!--.row-->
+				        <div class="row">
+				            <div class="col-md-12">
+				                <div class="progress-wrapper">
+				                	{% for i in cv.skills.all %}
+										
+				                    <div class="progress-item">
+				                        <span class="progress-title">{{i.skill}}</span>
+
+				                        <div class="progress">
+				                            <div class="progress-bar" role="progressbar" aria-valuenow="{{i.level}}" aria-valuemin="0"
+				                                 aria-valuemax="100" style="width:{{i.level}}%"><span class="progress-percent"> {{i.level}}%</span>
+				                            </div>
+				                        </div>
+				                        <!-- .progress -->
+				                    </div>
+				                    <!-- .skill-progress -->
+
+				                    {% endfor %}
+				                </div>
+				                <!-- /.progress-wrapper -->
+				            </div>
+				        </div>
+				        <!--.row -->
+				    </div>
+				    <!-- .container-fluid -->
+				</section>
+				<!-- .skills-wrapper -->
+				<section class="section-wrapper section-experience ">
+				    <div class="container-fluid">
+				        <div class="row">
+				            <div class="col-md-12">
+				                <div class="section-title"><h2>Work Experience</h2></div>
+				            </div>
+				        </div>
+				        <!--.row-->
+				        <div class="row">
+				            <div class="col-md-12">
+				            	{% for i in cv.work_experience.all %}
+				                <div class="content-item">
+				                    <small>{{i.years}}</small>
+				                    <h3>{{i.designation}}</h3>
+				                    <h4>{{i.organisation}}</h4>
+
+				                    <p>{{i.location}}</p>
+				                </div>
+				                <!-- .experience-item -->
+				                {% endfor %}
+				            </div>
+				        </div>
+				        <!--.row-->
+				    </div>
+				    <!-- .container-fluid -->
+
+				</section>
+				<!-- .section-experience -->
+				<section class="section-wrapper section-education gray-bg">
+				    <div class="container-fluid">
+				        <div class="row">
+				            <div class="col-md-12">
+				                <div class="section-title"><h2>Education</h2></div>
+				            </div>
+				        </div>
+				        <!--.row-->
+				        <div class="row">
+				            <div class="col-md-12">
+				            	{% for i in cv.education.all %}
+				                <div class="content-item">
+				                    <small>{{ i.percentage }}%</small>
+				                    <h3>{{ i.course }}</h3>
+				                    <h4>{{ i.stream }}</h4>
+
+				                    <p>{{ i.instute_name }}</p>
+				                </div>
+				                <!-- .experience-item -->
+				                {% endfor %}
+				            </div>
+				        </div>
+				        <!--.row-->
+				    </div>
+				    <!-- .container-fluid -->
+
+				</section>
+				<!-- .section-education -->
+				<section class="section-wrapper section-interest ">
+				    <div class="container-fluid">
+				        <div class="row">
+				            <div class="col-md-12">
+				                <div class="section-title">
+				                    <h2>Interest</h2>
+				                </div>
+				            </div>
+				        </div>
+				        <!-- .row -->
+
+				        <div class="row">
+				            <div class="col-md-12">
+				                <div class="col-md-12">
+				                <p>
+				                    {{cv.hobbies_and_intrests}}
+				                </p>
+				            	</div>
+				                
+				            </div>
+				        </div>
+				        <!-- .row -->
+
+				    </div>
+				</section>
+
+				<section class="section-contact section-wrapper gray-bg">
+				    <div class="container-fluid">
+				        <div class="row">
+				            <div class="col-md-12">
+				                <div class="section-title">
+				                    <h2>Contact</h2>
+				                </div>
+				            </div>
+				        </div>
+				        <!--.row-->
+				        <div class="row">
+				            <div class="col-md-12">
+
+				                <address>
+				                    <strong>Mobile Number</strong><br>
+				                    {{ cv.phone_no }}
+				                </address>
+				                <address>
+				                    <strong>Email</strong><br>
+				                 	{{ cv.email_id }}
+				                </address>
+				            </div>
+				        </div>
+				    </div>
+				</section>
+
+
+
+
+			</div>
+
+		</div>
+	</div>
+
+
+
+
+
+	<script type="text/javascript" src="{% static 'js/scripts.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+	<script type="text/javascript" src="{% static 'js/jquery-2.1.4.min.js' %}"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <html>
 <head>
 <title>CV</title></head>
 <body>{% if cv.photo %}
@@ -10,8 +249,8 @@
 <p>Work Experience : {{cv.work_experience}}</p>
 <p>Hobbies: {{cv.hobbies_and_intrests}}</p>
 <hr/>
-<!-- {{cv.education}} -->
-<h3>Education Qualification:</h3>
+<- {{cv.education}} -->
+<!-- <h3>Education Qualification:</h3>
 {% for i in cv.education.all %}
 	<p>{{ i.course }}
 	{{ i.instute_name }}
@@ -30,3 +269,4 @@
 {% endfor %}
 </body>
 </html>
+ --> 
