@@ -12,6 +12,7 @@ class CV(models.Model):
 	height=models.IntegerField(default=0)
 	width=models.IntegerField(default=0)
 	about_you=models.TextField(max_length=250)
+	address=models.TextField(max_length=250)
 	hobbies_and_intrests=models.TextField(blank=True,null=True)
 	timestamp=models.DateTimeField(auto_now_add=True,auto_now=False)
 	profile=models.CharField(max_length=200)

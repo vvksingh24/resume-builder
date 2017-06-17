@@ -30,11 +30,7 @@ def CreateCV(request):
 			skillformset=SKILLSFormSet(request.POST or None,request.FILES or None,prefix = 'skills_form', instance=cv)
 			achieveformset=ACHIEVEFormSet(request.POST or None,request.FILES or None,prefix = 'achievement_form',instance=cv)
 			weformset=WEFormSet(request.POST or None,request.FILES or None,prefix = 'work_experience_form',instance=cv)
-			print (eqformset.is_valid())
-			print (eqformset.is_valid())
-			print (eqformset.errors)
-			print (skillformset.is_valid())
-			print (achieveformset)
+			
 
 			if eqformset.is_valid() and skillformset.is_valid() and achieveformset.is_valid() and weformset.is_valid():
 				cv.save()

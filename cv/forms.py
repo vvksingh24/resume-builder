@@ -7,7 +7,7 @@ from .models import CV,EQ,Skill,Achieve,WE
 class CVForm(forms.ModelForm):
 	class Meta:
 		model=CV
-		fields =['name','phone_no','email_id','profile','about_you','photo','hobbies_and_intrests']
+		fields =['name','phone_no','email_id','profile','about_you','photo','address','hobbies_and_intrests']
 		widgets={
 		'name':forms.TextInput(attrs={'placeholder':'Enter your Full Name here'}),
 		'phone_no':forms.TextInput(attrs={'placeholder':'Enter your Phone No here'}),
