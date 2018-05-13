@@ -58,4 +58,4 @@ class WE(models.Model):
 	organisation=models.CharField(max_length=50)
 	designation=models.CharField(max_length=30)
 	location=models.CharField(max_length=30)
-	years=models.IntegerField()
+	years=models.CharField(max_length=10)
