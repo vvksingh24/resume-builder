@@ -6,13 +6,13 @@ def upload(instance,filename):
 
 class CV(models.Model):
 	name=models.CharField(max_length=50,blank=False)
-	phone_no=models.IntegerField()
+	phone_no=models.CharField(max_length=15)
 	email_id=models.EmailField()
 	photo=models.ImageField(upload_to=upload,null=True,height_field='height', width_field='width',blank=True)
 	height=models.IntegerField(default=0)
 	width=models.IntegerField(default=0)
-	about_you=models.TextField(max_length=250)
-	address=models.TextField(max_length=250)
+	about_you=models.TextField()
+	address=models.TextField()
 	hobbies_and_intrests=models.TextField(blank=True,null=True)
 	timestamp=models.DateTimeField(auto_now_add=True,auto_now=False)
 	profile=models.CharField(max_length=200)
