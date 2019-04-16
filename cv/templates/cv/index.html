@@ -43,6 +43,7 @@
 				</div>
 			</div>
 			{% endfor %}
+			<p class="list-group-item list-group-item-action">Create Your Resume? <a href="{% url 'cv:create' %}">click here</p>
 			{% else %}
 				<h1 class="text-center list-group-item list-group-item-action"> No resumes </h1>
 				<p class="list-group-item list-group-item-action">Create Your Resume? <a href="{% url 'cv:create' %}">click here</p>
