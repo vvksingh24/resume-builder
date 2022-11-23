@@ -1,3 +1,4 @@
 .py[cod]
 .dbsqlite3
 *.pyc
+*/__pycache__/*
