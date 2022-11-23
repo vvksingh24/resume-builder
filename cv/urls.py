@@ -1,9 +1,9 @@
-from django.conf.urls import url
+from django.urls import re_path
 from . import views
 
 app_name='cv'
 urlpatterns=[
-	url(r'^$', views.IndexView.as_view(),name='index'),
-	url(r'^create/$',views.CreateCV,name='create'),
-	url(r'^(?P<pk>[0-9]+)/$',views.CView.as_view(),name='detail'),
+	 re_path(r'^$', views.IndexView.as_view(),name='index'),
+	 re_path(r'^create/$',views.CreateCV,name='create'),
+	 re_path(r'^(?P<pk>[0-9]+)/$',views.CView.as_view(),name='detail'),
 ]
